@@ -1,0 +1,17 @@
+{
+    "CashFlow": {
+        "DayliCashFlow": {
+            "Date": "2017-01-01 00:00:00",
+            "OperationType": {
+                "OperationTypeId": 1,
+                "OperationTypeDescription": "Debit/Credit"
+            },
+            "Amount": 1000
+        }
+    },
+    "ConsolidateReport": {
+        "InitialDate": "2017-01-01 00:00:00",
+        "FinalDate": "2017-01-01 00:00:00",
+        "OperationTypeId": 1
+    }
+}
