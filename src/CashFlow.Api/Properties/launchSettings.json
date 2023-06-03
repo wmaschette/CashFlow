@@ -1,0 +1,42 @@
+﻿{
+  "$schema": "https://json.schemastore.org/launchsettings.json",
+  "iisSettings": {
+    "windowsAuthentication": false,
+    "anonymousAuthentication": true,
+    "iisExpress": {
+      "applicationUrl": "http://localhost:18486/swagger",
+      "sslPort": 44392
+    }
+  },
+  "profiles": {
+    "CashFlow.Api": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "launchUrl": "swagger",
+      "environmentVariables": {
+        "ConnectionString": "User ID=postgres;Password=postgres;Host=localhost;Port=5432;Database=cashflow;Pooling=true;",
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:7047;http://localhost:5047",
+      "dotnetRunMessages": true
+    },
+    "IIS Express": {
+      "commandName": "IISExpress",
+      "launchBrowser": true,
+      "launchUrl": "swagger",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
+    },
+    "Docker": {
+      "commandName": "Docker",
+      "launchBrowser": true,
+      "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}/swagger",
+      "publishAllPorts": true,
+      "useSSL": true,
+      "environmentVariables": {
+        "ConnectionString": "User ID=postgres;Password=postgres;Host=cash_flow_db;Port=5432;Database=cashflow;Pooling=true;"
+      }
+    }
+  }
+}
