@@ -1,4 +1,4 @@
-namespace CashFlow.SqlData;
+namespace CashFlow.Infrastructure;
 
 using CashFlow.Domain.Entities;
 using Microsoft.EntityFrameworkCore;

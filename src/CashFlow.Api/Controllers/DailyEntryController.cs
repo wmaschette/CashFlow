@@ -1,4 +1,4 @@
-using CashFlow.Domain.DTOs;
+using CashFlow.Api.DTOs;
 using CashFlow.Domain.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
@@ -14,7 +14,7 @@ public class DailyEntryController : ControllerBase
     {
         _logger = logger;
         _dailyEntryService = dailyEntryService;
-    }  
+    }
 
     [HttpPost]
     [ProducesResponseType(typeof(DailyEntryResponseDto), 201)]
@@ -26,10 +26,18 @@ public class DailyEntryController : ControllerBase
             return BadRequest("DailyEntry object is null");
         }
 
-        var response = await _dailyEntryService.CreateDailyEntry(dailyEntryRequest);
+        var dailyEntry = await _dailyEntryService.CreateDailyEntry(dailyEntryRequest.OperationTypeId, dailyEntryRequest.Amount);
 
-        return Created(new Uri($"{Request.Path}/{response.Id}", UriKind.Relative), response);
-    } 
+        return Created(
+            new Uri($"{Request.Path}/{dailyEntry.Id}", UriKind.Relative),
+            new DailyEntryResponseDto
+            {
+                Id = dailyEntry.Id,
+                OperationTypeId = (int)dailyEntry.OperationTypeId,
+                Amount = dailyEntry.Amount,
+                CreatedAt = dailyEntry.CreatedAt
+            });
+    }
 
     [HttpGet("{id}")]
     public async Task<IActionResult> Get(Guid id)
@@ -37,7 +45,7 @@ public class DailyEntryController : ControllerBase
         _logger.LogInformation("Getting daily entry by id");
 
         var response = await _dailyEntryService.GetDailyEntryById(id);
-        if(response is null)
+        if (response is null)
             return NotFound();
 
         return Ok(response);

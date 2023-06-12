@@ -23,6 +23,6 @@ public class DailyEntryTests
         Assert.Equal(operationType, dailyEntry.OperationTypeId);
         Assert.Equal(randomAmount, dailyEntry.Amount);
         Assert.NotEqual(Guid.Empty, dailyEntry.Id);
-        Assert.NotEqual(DateTime.MinValue, dailyEntry.Date);
+        Assert.NotEqual(DateTime.MinValue, dailyEntry.CreatedAt);
     }
 }

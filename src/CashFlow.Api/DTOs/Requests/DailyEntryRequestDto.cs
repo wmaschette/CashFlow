@@ -1,7 +1,7 @@
 using System.ComponentModel.DataAnnotations;
 using CashFlow.Domain.Enums;
 
-namespace CashFlow.Domain.DTOs;
+namespace CashFlow.Api.DTOs;
 
 public class DailyEntryRequestDto
 {

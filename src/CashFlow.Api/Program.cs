@@ -3,8 +3,8 @@ using CashFlow.Domain.Interfaces;
 using CashFlow.Domain.Services;
 using Microsoft.OpenApi.Models;
 using Microsoft.EntityFrameworkCore;
-using CashFlow.SqlData;
-using CashFlow.SqlData.Repositories;
+using CashFlow.Infrastructure;
+using CashFlow.Infrastructure.Repositories;
 
 var env = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
 var builder = WebApplication.CreateBuilder(args);

@@ -1,10 +1,10 @@
-using CashFlow.Domain.DTOs;
+using CashFlow.Domain.Entities;
 
 namespace CashFlow.Domain.Interfaces;
 
 public interface IDailyEntryService
 {
-    Task<DailyEntryResponseDto> CreateDailyEntry(DailyEntryRequestDto dailyEntryRequest);
+    Task<DailyEntry> CreateDailyEntry(int operationTypeId, decimal amount);
 
-    Task<DailyEntryResponseDto?> GetDailyEntryById(Guid id);
+    Task<DailyEntry?> GetDailyEntryById(Guid id);
 }

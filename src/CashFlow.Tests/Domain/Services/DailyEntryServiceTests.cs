@@ -5,8 +5,8 @@ using CashFlow.Domain.Enums;
 using CashFlow.Domain.Entities;
 using Moq;
 using Microsoft.Extensions.Logging;
-using CashFlow.Domain.DTOs;
 using CashFlow.Domain.Interfaces;
+using System.Threading.Tasks;
 
 namespace CashFlow.Tests.Domain.Services;
 
@@ -27,34 +27,45 @@ public class DailyEntryServiceTests
     {
         // Given
         var dailyEntryService = new DailyEntryService(_loggerMock.Object, _dailyEntryRepositoryMock.Object);
-        var dailyEntryRequestDtoFake = new DailyEntryRequestDto
-        {
-            OperationTypeId = (int)operationType,
-            Amount = new Random().Next(-100, 0)
-        };
-        var expectedMessage ="Amount must be greater than zero. (Parameter 'Amount')";
+        var expectedMessage ="Amount must be greater than zero. (Parameter 'amount')";
+        var amoutFake = new Random().Next(-100, 0);
 
         // When
-        var exception = await Assert.ThrowsAsync<ArgumentException>(() => dailyEntryService.CreateDailyEntry(dailyEntryRequestDtoFake));
+        var exception = await Assert.ThrowsAsync<ArgumentException>(() => dailyEntryService.CreateDailyEntry((int)operationType, amoutFake));
 
         // Then
         Assert.Equal(expectedMessage, exception.Message);
     }
 
     [Fact]
-    public async void ValidateAmount_ShouldBeThrowArgumentException_WhenOperationTypeDoesNotValid()
+    public async void ValidateOperationType_ShouldBeThrowArgumentException_WhenOperationTypeDoesNotValid()
     {
         // Given
         var dailyEntryService = new DailyEntryService(_loggerMock.Object, _dailyEntryRepositoryMock.Object);
-        var dailyEntryRequestDtoFake = new DailyEntryRequestDto
-        {
-            OperationTypeId = new Random().Next(3, 100),
-            Amount = Convert.ToDecimal( new Random().NextDouble() * (100 - 0.01) + 0.01)
-        };
-        var expectedMessage = $"Invalid operation type. (Parameter 'OperationTypeId')";	
+        var operationTypeIdFake = new Random().Next(3, 100);
+        var amoutFake = Convert.ToDecimal( new Random().NextDouble() * (100 - 0.01) + 0.01);
+        var expectedMessage = $"Invalid operation type. (Parameter 'operationTypeId')";	
 
         // When
-        var exception = await Assert.ThrowsAsync<ArgumentException>(() => dailyEntryService.CreateDailyEntry(dailyEntryRequestDtoFake));
+        var exception = await Assert.ThrowsAsync<ArgumentException>(() => dailyEntryService.CreateDailyEntry(operationTypeIdFake, amoutFake));
+
+        // Then
+        Assert.Equal(expectedMessage, exception.Message);
+    }
+
+    [Theory]
+    [InlineData(OperationType.Debit)]
+    [InlineData(OperationType.Credit)]
+    public async void ValidateEntityCreated_ShouldBeThrowException_WhenCantSaveDailyEntryInDatabase(OperationType operationType)
+    {
+        // Given
+        var expectedMessage = $"Error on saving daily entry')";	
+        _dailyEntryRepositoryMock.Setup(x => x.Create(It.IsAny<DailyEntry>())).ThrowsAsync(new Exception(expectedMessage));
+        var dailyEntryService = new DailyEntryService(_loggerMock.Object, _dailyEntryRepositoryMock.Object);
+        var amoutFake = Convert.ToDecimal( new Random().NextDouble() * (100 - 0.01) + 0.01);
+
+        // When
+        var exception = await Assert.ThrowsAsync<Exception>(() => dailyEntryService.CreateDailyEntry((int)operationType, amoutFake));
 
         // Then
         Assert.Equal(expectedMessage, exception.Message);
@@ -66,20 +77,18 @@ public class DailyEntryServiceTests
     public async void CreateDailyEntry_ShouldBeReturnValidDailyEntry(OperationType operationType)
     {
         // Given
+        var amoutFake = Convert.ToDecimal( new Random().NextDouble() * (100 - 0.01) + 0.01);
+        _dailyEntryRepositoryMock
+            .Setup(x => x.Create(It.IsAny<DailyEntry>()))
+            .ReturnsAsync(new DailyEntry(operationType, amoutFake));
         var dailyEntryService = new DailyEntryService(_loggerMock.Object, _dailyEntryRepositoryMock.Object);
-        var dailyEntryRequestDtoFake = new DailyEntryRequestDto
-        {
-            OperationTypeId = (int)operationType,
-            Amount = Convert.ToDecimal( new Random().NextDouble() * (100 - 0.01) + 0.01)
-        };
 
         // When
-        //var dailyEntry = await dailyEntryService.CreateDailyEntry(dailyEntryRequestDtoFake);
+        var dailyEntry = await dailyEntryService.CreateDailyEntry((int)operationType, amoutFake);
 
         // Then
-        // Assert.Equal((int)operationType, dailyEntry.OperationTypeId);
-        // Assert.Equal(dailyEntryRequestDtoFake.Amount, dailyEntry.Amount);
+        Assert.Equal(operationType, dailyEntry.OperationTypeId);
+        Assert.Equal(amoutFake, dailyEntry.Amount);
         Assert.True(true);
     }
-
 }

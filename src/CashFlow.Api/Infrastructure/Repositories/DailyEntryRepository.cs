@@ -1,6 +1,6 @@
-namespace CashFlow.SqlData.Repositories;
+namespace CashFlow.Infrastructure.Repositories;
 
-using CashFlow.SqlData;
+using CashFlow.Infrastructure;
 using CashFlow.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using CashFlow.Domain.Interfaces;
