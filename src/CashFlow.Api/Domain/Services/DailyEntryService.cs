@@ -44,7 +44,4 @@ public class DailyEntryService : IDailyEntryService
 
         return entity;
     }
-
-    public async Task<DailyEntry?> GetDailyEntryById(Guid id) 
-        => await _dailyEntryRepository.GetById(id);
 }

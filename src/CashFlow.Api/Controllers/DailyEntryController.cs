@@ -1,5 +1,6 @@
 using CashFlow.Api.DTOs;
 using CashFlow.Domain.Interfaces;
+using CashFlow.Domain.Interfaces.Repositories;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CashFlow.Api.Controllers;
@@ -10,10 +11,12 @@ public class DailyEntryController : ControllerBase
 {
     private readonly ILogger<DailyEntryController> _logger;
     private readonly IDailyEntryService _dailyEntryService;
-    public DailyEntryController(ILogger<DailyEntryController> logger, IDailyEntryService dailyEntryService)
+    private readonly IDailyEntryQueryRepository _dailyEntryQueryRepository;
+    public DailyEntryController(ILogger<DailyEntryController> logger, IDailyEntryService dailyEntryService, IDailyEntryQueryRepository dailyEntryQueryRepository)
     {
         _logger = logger;
         _dailyEntryService = dailyEntryService;
+        _dailyEntryQueryRepository = dailyEntryQueryRepository;
     }
 
     [HttpPost]
@@ -40,11 +43,12 @@ public class DailyEntryController : ControllerBase
     }
 
     [HttpGet("{id}")]
+    [ProducesResponseType(typeof(DailyEntryResponseDto), 200)]
     public async Task<IActionResult> Get(Guid id)
     {
         _logger.LogInformation("Getting daily entry by id");
 
-        var response = await _dailyEntryService.GetDailyEntryById(id);
+        var response = await _dailyEntryQueryRepository.GetDailyEntryById(id);
         if (response is null)
             return NotFound();
 

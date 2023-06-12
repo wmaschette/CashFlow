@@ -7,7 +7,7 @@ using CashFlow.Domain.Interfaces;
 
 public class DailyEntryRepository : IDailyEntryRepository
 {
-    private DbContext _applicationDataContext;
+    private readonly DbContext _applicationDataContext;
     private readonly DbSet<DailyEntry> _dailyEntries;
 
     public DailyEntryRepository(ApplicationDataContext applicationDataContext)

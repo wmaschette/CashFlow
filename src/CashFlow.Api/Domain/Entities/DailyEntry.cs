@@ -9,6 +9,8 @@ public class DailyEntry : BaseEntity
     public OperationType OperationTypeId { get; private set; }
     public decimal Amount { get; private set; }
 
+    public DailyEntry() { } // EF Core
+
     public DailyEntry(OperationType operationType, decimal amount)
     {
         CreatedAt = DateTime.Now;

@@ -5,6 +5,8 @@ using Microsoft.OpenApi.Models;
 using Microsoft.EntityFrameworkCore;
 using CashFlow.Infrastructure;
 using CashFlow.Infrastructure.Repositories;
+using CashFlow.Domain.Interfaces.Repositories;
+using CashFlow.Infrastructure.Queries;
 
 var env = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
 var builder = WebApplication.CreateBuilder(args);
@@ -18,7 +20,7 @@ var Configuration = builder.Configuration
 // add services to DI container
 {
     var service = builder.Services;
-    var connectionString = builder.Configuration["ConnectionString"];
+    var connectionString = builder.Configuration["ConnectionString"] ?? string.Empty;
 
     service.AddDbContext<ApplicationDataContext>(options => options.UseNpgsql(connectionString));
 
@@ -33,6 +35,7 @@ var Configuration = builder.Configuration
 
     service.AddScoped<IDailyEntryService, DailyEntryService>();
     service.AddScoped<IDailyEntryRepository, DailyEntryRepository>();
+    service.AddScoped<IDailyEntryQueryRepository, DailyEntryQueryRepository>(c => new DailyEntryQueryRepository(connectionString));
 }
 
 var app = builder.Build();
