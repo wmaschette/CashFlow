@@ -22,6 +22,4 @@ public class DailyEntryRepository : IDailyEntryRepository
         await _applicationDataContext.SaveChangesAsync();
         return dailyEntry;
     }
-
-    public async Task<DailyEntry?> GetById(Guid id) => await _dailyEntries.FirstOrDefaultAsync(dailyEntry => dailyEntry.Id == id);
 }

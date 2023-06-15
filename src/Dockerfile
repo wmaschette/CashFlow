@@ -1,33 +1,36 @@
-# Camada base
-FROM mcr.microsoft.com/dotnet/sdk:7.0 AS base
+# Base image for building the application
+FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
 WORKDIR /app
 
-# Restaurar dependências do projeto principal
-COPY src/CashFlow.Api/CashFlow.Api.csproj .
-RUN dotnet restore
+# Copy the project files
+COPY src/CashFlow.Api/CashFlow.Api.csproj ./src/CashFlow.Api/
+COPY src/CashFlow.Tests/CashFlow.Tests.csproj ./src/CashFlow.Tests/
 
-# Copiar e compilar o código do projeto principal
-COPY src/CashFlow.Api/ .
-RUN dotnet build -c Release -o out
+# Restore the project dependencies
+RUN dotnet restore src/CashFlow.Api/CashFlow.Api.csproj
 
-# Executar os testes de unidade
-FROM base AS unit-tests
-WORKDIR /app/tests/UnitTests
+# Copy the entire source code to the container
+COPY . .
 
-COPY src/CashFlow.Tests/CashFlow.Tests.csproj .
-RUN dotnet restore
+# Build the application
+WORKDIR /app/src/CashFlow.Api
+RUN dotnet build -c Release --no-restore
 
-COPY src/CashFlow.Tests/ .
+# Run the unit tests
+WORKDIR /app/src/CashFlow.Tests
 RUN dotnet test --no-restore --verbosity normal
 
-# Publicar o projeto principal
-FROM base AS publish
-RUN dotnet publish -c Release -o out
+# Publish the application
+WORKDIR /app/src/CashFlow.Api
+RUN dotnet publish -c Release -o /app/publish --no-restore
 
-# Camada final para a execução da API principal
-FROM mcr.microsoft.com/dotnet/aspnet:7.0 AS final
+# Final image for the application
+FROM mcr.microsoft.com/dotnet/aspnet:7.0
 WORKDIR /app
+COPY --from=build /app/publish .
+
+# Expose the application port
 EXPOSE 80
 
-COPY --from=publish /app/out .
+# Start the application
 ENTRYPOINT ["dotnet", "CashFlow.Api.dll"]
