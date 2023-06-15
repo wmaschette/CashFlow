@@ -55,13 +55,13 @@ The CashFlow project utilizes the following NuGet packages to provide additional
 - **Swashbuckle.AspNetCore** - Version 6.5.0: A package that facilitates adding Swagger support to ASP.NET Core applications, providing an interactive documentation interface.
 
 [![Microsoft.NET.Test.Sdk](https://img.shields.io/badge/Microsoft.NET.Test.Sdk-16.11.0-blue)](https://www.nuget.org/packages/Microsoft.NET.Test.Sdk/)
-- **Microsoft.NET.Test.Sdk** - Version 16.11.0: Um pacote que fornece a estrutura de teste necessária para executar testes unitários no .NET. Ele permite a execução de testes de unidade usando o framework de testes xUnit.
+- **Microsoft.NET.Test.Sdk** - Version 16.11.0: A package that provides the necessary test framework to run unit tests in .NET. It allows for executing unit tests using the xUnit testing framework.
 
 [![Moq](https://img.shields.io/badge/Moq-4.18.4-blue)](https://www.nuget.org/packages/Moq/)
-- **Moq** - Version 4.18.4: Um pacote de simulação (mocking) de objetos para .NET. O Moq permite criar simulações de objetos para testes unitários, facilitando o isolamento de dependências e a criação de cenários de teste.
+- **Moq** - Version 4.18.4: An object mocking package for .NET. Moq allows creating object mocks for unit testing, facilitating dependency isolation and the creation of test scenarios.
 
 [![xunit](https://img.shields.io/badge/xunit-2.4.1-blue)](https://www.nuget.org/packages/xunit/)
-- **xUnit** - Version 2.4.1: Um framework de teste de unidade para .NET. O xUnit é uma poderosa ferramenta para escrever e executar testes de unidade em projetos .NET, fornecendo recursos abrangentes para verificar o comportamento esperado do código. Ele oferece uma sintaxe limpa e concisa para a criação de casos de teste e assertivas.
+- **xUnit** - Version 2.4.1: A unit testing framework for .NET. xUnit is a powerful tool for writing and executing unit tests in .NET projects, providing comprehensive features to verify the expected behavior of code. It offers a clean and concise syntax for creating test cases and assertions.
 
 These packages are essential for the development of the CashFlow project, providing additional features, simplifying tasks, and facilitating integration with the PostgreSQL database.
 
