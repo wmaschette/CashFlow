@@ -40,21 +40,28 @@ To ensure the quality of the project, unit and integration tests are performed u
 The CashFlow project utilizes the following NuGet packages to provide additional functionalities and facilitate development:
 
 [![Dapper](https://img.shields.io/badge/Dapper-2.0.123-blue)](https://github.com/StackExchange/Dapper)
-[![Microsoft.AspNetCore.OpenApi](https://img.shields.io/badge/Microsoft.AspNetCore.OpenApi-7.0.5-blue)](https://docs.microsoft.com/en-us/aspnet/core/tutorials/getting-started-with-swashbuckle?view=aspnetcore-7.0.5)
-[![Microsoft.EntityFrameworkCore.Tools](https://img.shields.io/badge/Microsoft.EntityFrameworkCore.Tools-7.0.5-blue)](https://docs.microsoft.com/en-us/ef/core/cli/dotnet)
-[![Npgsql.EntityFrameworkCore.PostgreSQL](https://img.shields.io/badge/Npgsql.EntityFrameworkCore.PostgreSQL-7.0.4-blue)](https://www.npgsql.org/efcore/)
-[![Swashbuckle.AspNetCore](https://img.shields.io/badge/Swashbuckle.AspNetCore-6.5.0-blue)](https://github.com/domaindrivendev/Swashbuckle.AspNetCore)
-
-
 - **Dapper** - Version 2.0.123: A high-performance micro-ORM (Object-Relational Mapping) that simplifies database access and manipulation. In the CashFlow project, Dapper is primarily used for querying due to its efficiency and performance.
 
+[![Microsoft.AspNetCore.OpenApi](https://img.shields.io/badge/Microsoft.AspNetCore.OpenApi-7.0.5-blue)](https://docs.microsoft.com/en-us/aspnet/core/tutorials/getting-started-with-swashbuckle?view=aspnetcore-7.0.5)
 - **Microsoft.AspNetCore.OpenApi** - Version 7.0.5: A package that enables automatic generation of Swagger documentation for the API, facilitating endpoint visualization and testing.
 
+[![Microsoft.EntityFrameworkCore.Tools](https://img.shields.io/badge/Microsoft.EntityFrameworkCore.Tools-7.0.5-blue)](https://docs.microsoft.com/en-us/ef/core/cli/dotnet)
 - **Microsoft.EntityFrameworkCore.Tools** - Version 7.0.5: A set of tools for Entity Framework Core, including database migration commands and code scaffolding.
 
+[![Npgsql.EntityFrameworkCore.PostgreSQL](https://img.shields.io/badge/Npgsql.EntityFrameworkCore.PostgreSQL-7.0.4-blue)](https://www.npgsql.org/efcore/)
 - **Npgsql.EntityFrameworkCore.PostgreSQL** - Version 7.0.4: A PostgreSQL database provider for Entity Framework Core, allowing easy and efficient integration with the database.
 
+[![Swashbuckle.AspNetCore](https://img.shields.io/badge/Swashbuckle.AspNetCore-6.5.0-blue)](https://github.com/domaindrivendev/Swashbuckle.AspNetCore)
 - **Swashbuckle.AspNetCore** - Version 6.5.0: A package that facilitates adding Swagger support to ASP.NET Core applications, providing an interactive documentation interface.
+
+[![Microsoft.NET.Test.Sdk](https://img.shields.io/badge/Microsoft.NET.Test.Sdk-16.11.0-blue)](https://www.nuget.org/packages/Microsoft.NET.Test.Sdk/)
+- **Microsoft.NET.Test.Sdk** - Version 16.11.0: Um pacote que fornece a estrutura de teste necessária para executar testes unitários no .NET. Ele permite a execução de testes de unidade usando o framework de testes xUnit.
+
+[![Moq](https://img.shields.io/badge/Moq-4.18.4-blue)](https://www.nuget.org/packages/Moq/)
+- **Moq** - Version 4.18.4: Um pacote de simulação (mocking) de objetos para .NET. O Moq permite criar simulações de objetos para testes unitários, facilitando o isolamento de dependências e a criação de cenários de teste.
+
+[![xunit](https://img.shields.io/badge/xunit-2.4.1-blue)](https://www.nuget.org/packages/xunit/)
+- **xUnit** - Version 2.4.1: Um framework de teste de unidade para .NET. O xUnit é uma poderosa ferramenta para escrever e executar testes de unidade em projetos .NET, fornecendo recursos abrangentes para verificar o comportamento esperado do código. Ele oferece uma sintaxe limpa e concisa para a criação de casos de teste e assertivas.
 
 These packages are essential for the development of the CashFlow project, providing additional features, simplifying tasks, and facilitating integration with the PostgreSQL database.
 
