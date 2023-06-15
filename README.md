@@ -18,14 +18,14 @@ These endpoints allow you to interact with the application, record daily entries
 
 The CashFlow project utilizes the following technologies and tools:
 
-- Framework: .NET 7
-- Database: PostgreSQL
-- Containerization: Docker
-- Database Administration: PgAdmin4
-- Development Environment: Visual Studio Code
-- Artificial Intelligence: Github Copilot
-- Chatbot: ChatGPT
-- Testing: XUnit
+[![Framework](https://img.shields.io/badge/Framework-.NET%207-blueviolet)](https://dotnet.microsoft.com/)
+[![Database](https://img.shields.io/badge/Database-PostgreSQL-blue)](https://www.postgresql.org/)
+[![Containerization](https://img.shields.io/badge/Containerization-Docker-brightgreen)](https://www.docker.com/)
+[![Admin Interface](https://img.shields.io/badge/Admin%20Interface-PgAdmin4-orange)](https://www.pgadmin.org/)
+[![Development Environment](https://img.shields.io/badge/Development%20Environment-Visual%20Studio%20Code-blue)](https://code.visualstudio.com/)
+[![AI Tool](https://img.shields.io/badge/AI%20Tool-Github%20Copilot-yellow)](https://copilot.github.com/)
+[![Chatbot](https://img.shields.io/badge/Chatbot-ChatGPT-brightgreen)](https://www.openai.com/)
+[![Testing Framework](https://img.shields.io/badge/Testing%20Framework-XUnit-red)](https://xunit.net/)
 
 These technologies have been chosen to provide a solid and modern foundation for the development of the CashFlow project. The .NET 7 framework is used to create a robust and scalable web application. PostgreSQL is the chosen database, providing performance and advanced features for managing financial data.
 
@@ -39,15 +39,29 @@ To ensure the quality of the project, unit and integration tests are performed u
 
 The CashFlow project utilizes the following NuGet packages to provide additional functionalities and facilitate development:
 
+[![Dapper](https://img.shields.io/badge/Dapper-2.0.123-blue)](https://github.com/StackExchange/Dapper)
 - **Dapper** - Version 2.0.123: A high-performance micro-ORM (Object-Relational Mapping) that simplifies database access and manipulation. In the CashFlow project, Dapper is primarily used for querying due to its efficiency and performance.
 
+[![Microsoft.AspNetCore.OpenApi](https://img.shields.io/badge/Microsoft.AspNetCore.OpenApi-7.0.5-blue)](https://docs.microsoft.com/en-us/aspnet/core/tutorials/getting-started-with-swashbuckle?view=aspnetcore-7.0.5)
 - **Microsoft.AspNetCore.OpenApi** - Version 7.0.5: A package that enables automatic generation of Swagger documentation for the API, facilitating endpoint visualization and testing.
 
+[![Microsoft.EntityFrameworkCore.Tools](https://img.shields.io/badge/Microsoft.EntityFrameworkCore.Tools-7.0.5-blue)](https://docs.microsoft.com/en-us/ef/core/cli/dotnet)
 - **Microsoft.EntityFrameworkCore.Tools** - Version 7.0.5: A set of tools for Entity Framework Core, including database migration commands and code scaffolding.
 
+[![Npgsql.EntityFrameworkCore.PostgreSQL](https://img.shields.io/badge/Npgsql.EntityFrameworkCore.PostgreSQL-7.0.4-blue)](https://www.npgsql.org/efcore/)
 - **Npgsql.EntityFrameworkCore.PostgreSQL** - Version 7.0.4: A PostgreSQL database provider for Entity Framework Core, allowing easy and efficient integration with the database.
 
+[![Swashbuckle.AspNetCore](https://img.shields.io/badge/Swashbuckle.AspNetCore-6.5.0-blue)](https://github.com/domaindrivendev/Swashbuckle.AspNetCore)
 - **Swashbuckle.AspNetCore** - Version 6.5.0: A package that facilitates adding Swagger support to ASP.NET Core applications, providing an interactive documentation interface.
+
+[![Microsoft.NET.Test.Sdk](https://img.shields.io/badge/Microsoft.NET.Test.Sdk-16.11.0-blue)](https://www.nuget.org/packages/Microsoft.NET.Test.Sdk/)
+- **Microsoft.NET.Test.Sdk** - Version 16.11.0: A package that provides the necessary test framework to run unit tests in .NET. It allows for executing unit tests using the xUnit testing framework.
+
+[![Moq](https://img.shields.io/badge/Moq-4.18.4-blue)](https://www.nuget.org/packages/Moq/)
+- **Moq** - Version 4.18.4: An object mocking package for .NET. Moq allows creating object mocks for unit testing, facilitating dependency isolation and the creation of test scenarios.
+
+[![xunit](https://img.shields.io/badge/xunit-2.4.1-blue)](https://www.nuget.org/packages/xunit/)
+- **xUnit** - Version 2.4.1: A unit testing framework for .NET. xUnit is a powerful tool for writing and executing unit tests in .NET projects, providing comprehensive features to verify the expected behavior of code. It offers a clean and concise syntax for creating test cases and assertions.
 
 These packages are essential for the development of the CashFlow project, providing additional features, simplifying tasks, and facilitating integration with the PostgreSQL database.
 
