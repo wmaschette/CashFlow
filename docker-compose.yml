@@ -11,9 +11,9 @@ volumes:
 
 services:
 
-  cash_flow_db:
+  cash-flow-db:
     image: postgres:latest
-    container_name: cash_flow_db
+    container_name: cash-flow-db
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
@@ -35,16 +35,16 @@ services:
     container_name: cash-flow-service
     image: ${REGISTRY:-cash-flow}/cashflow.api:${PLATFORM:-linux}-${TAG:-latest}
     depends_on:
-      cash_flow_db:
+      cash-flow-db:
         condition: service_healthy
     links:
-      - cash_flow_db
+      - cash-flow-db
     build:
       context: .
       dockerfile: src/Dockerfile
     restart: always
     environment:
-      - ConnectionString= User ID=postgres;Password=postgres;Host=cash_flow_db;Port=5432;Database=cashflow;Pooling=true;
+      - ConnectionString= User ID=postgres;Password=postgres;Host=cash-flow-db;Port=5432;Database=cashflow;Pooling=true;
     ports:
       - 5000:80
       - 5001:443
@@ -52,7 +52,7 @@ services:
       - dev  
   
   pgadmin:
-    container_name: pgadmin_db_container
+    container_name: pgadmin-db
     image: dpage/pgadmin4
     environment:
       PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL:-pgadmin4@pgadmin.org}
