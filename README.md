@@ -18,14 +18,14 @@ These endpoints allow you to interact with the application, record daily entries
 
 The CashFlow project utilizes the following technologies and tools:
 
-- Framework: .NET 7
-- Database: PostgreSQL
-- Containerization: Docker
-- Database Administration: PgAdmin4
-- Development Environment: Visual Studio Code
-- Artificial Intelligence: Github Copilot
-- Chatbot: ChatGPT
-- Testing: XUnit
+[![Framework](https://img.shields.io/badge/Framework-.NET%207-blueviolet)](https://dotnet.microsoft.com/)
+[![Database](https://img.shields.io/badge/Database-PostgreSQL-blue)](https://www.postgresql.org/)
+[![Containerization](https://img.shields.io/badge/Containerization-Docker-brightgreen)](https://www.docker.com/)
+[![Admin Interface](https://img.shields.io/badge/Admin%20Interface-PgAdmin4-orange)](https://www.pgadmin.org/)
+[![Development Environment](https://img.shields.io/badge/Development%20Environment-Visual%20Studio%20Code-blue)](https://code.visualstudio.com/)
+[![AI Tool](https://img.shields.io/badge/AI%20Tool-Github%20Copilot-yellow)](https://copilot.github.com/)
+[![Chatbot](https://img.shields.io/badge/Chatbot-ChatGPT-brightgreen)](https://www.openai.com/)
+[![Testing Framework](https://img.shields.io/badge/Testing%20Framework-XUnit-red)](https://xunit.net/)
 
 These technologies have been chosen to provide a solid and modern foundation for the development of the CashFlow project. The .NET 7 framework is used to create a robust and scalable web application. PostgreSQL is the chosen database, providing performance and advanced features for managing financial data.
 
@@ -38,6 +38,13 @@ To ensure the quality of the project, unit and integration tests are performed u
 ## Used Packages
 
 The CashFlow project utilizes the following NuGet packages to provide additional functionalities and facilitate development:
+
+[![Dapper](https://img.shields.io/badge/Dapper-2.0.123-blue)](https://github.com/StackExchange/Dapper)
+[![Microsoft.AspNetCore.OpenApi](https://img.shields.io/badge/Microsoft.AspNetCore.OpenApi-7.0.5-blue)](https://docs.microsoft.com/en-us/aspnet/core/tutorials/getting-started-with-swashbuckle?view=aspnetcore-7.0.5)
+[![Microsoft.EntityFrameworkCore.Tools](https://img.shields.io/badge/Microsoft.EntityFrameworkCore.Tools-7.0.5-blue)](https://docs.microsoft.com/en-us/ef/core/cli/dotnet)
+[![Npgsql.EntityFrameworkCore.PostgreSQL](https://img.shields.io/badge/Npgsql.EntityFrameworkCore.PostgreSQL-7.0.4-blue)](https://www.npgsql.org/efcore/)
+[![Swashbuckle.AspNetCore](https://img.shields.io/badge/Swashbuckle.AspNetCore-6.5.0-blue)](https://github.com/domaindrivendev/Swashbuckle.AspNetCore)
+
 
 - **Dapper** - Version 2.0.123: A high-performance micro-ORM (Object-Relational Mapping) that simplifies database access and manipulation. In the CashFlow project, Dapper is primarily used for querying due to its efficiency and performance.
 
