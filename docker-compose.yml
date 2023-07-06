@@ -3,7 +3,7 @@ version: '3.4'
 networks:
   dev:
     name: dev
-    driver: bridge 
+    driver: bridge
 
 volumes:
   cash_flow_data:
@@ -37,6 +37,12 @@ services:
     depends_on:
       cash-flow-db:
         condition: service_healthy
+    deploy:
+      replicas: 1
+      resources:
+        limits:
+          cpus: '1'
+          memory: 200M
     links:
       - cash-flow-db
     build:
@@ -51,17 +57,54 @@ services:
     networks:
       - dev  
   
-  pgadmin:
-    container_name: pgadmin-db
-    image: dpage/pgadmin4
-    environment:
-      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL:-pgadmin4@pgadmin.org}
-      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD:-admin}
-      PGADMIN_CONFIG_SERVER_MODE: 'False'
-    ports:
-      - "${PGADMIN_PORT:-5050}:80"
-    volumes:
-       - pgadmin:/var/lib/pgadmin
+  influxdb:
+    image: influxdb:1.8
     networks:
       - dev
-    restart: unless-stopped
+    ports:
+      - "8086:8086"
+    environment:
+      - INFLUXDB_DB=k6
+
+  grafana:
+    image: grafana/grafana:latest
+    networks:
+      - dev
+    ports:
+      - "3000:3000"
+    environment:
+      - GF_AUTH_ANONYMOUS_ORG_ROLE=Admin
+      - GF_AUTH_ANONYMOUS_ENABLED=true
+      - GF_AUTH_BASIC_ENABLED=false
+      - GF_SERVER_SERVE_FROM_SUB_PATH=true
+    volumes:
+      - ./dashboards:/var/lib/grafana/dashboards
+      - ./grafana-dashboard.yaml:/etc/grafana/provisioning/dashboards/dashboard.yaml
+      - ./grafana-datasource.yaml:/etc/grafana/provisioning/datasources/datasource.yaml
+
+  k6:
+    image: loadimpact/k6:latest
+    networks:
+      - dev
+    ports:
+      - "6565:6565"
+    environment:
+      - K6_OUT=influxdb=http://influxdb:8086/k6
+    volumes:
+      - ./scripts:/scripts
+
+
+  # pgadmin:
+  #   container_name: pgadmin-db
+  #   image: dpage/pgadmin4
+  #   environment:
+  #     pgadmin_default_email: ${pgadmin_default_email:-pgadmin4@pgadmin.org}
+  #     pgadmin_default_password: ${pgadmin_default_password:-admin}
+  #     pgadmin_config_server_mode: 'false'
+  #   ports:
+  #     - "${pgadmin_port:-5050}:80"
+  #   volumes:
+  #      - pgadmin:/var/lib/pgadmin
+  #   networks:
+  #     - dev
+  #   restart: unless-stopped
